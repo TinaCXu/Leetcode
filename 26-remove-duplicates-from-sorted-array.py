@@ -30,7 +30,16 @@ class Solution:
                 nums[i] = nums[j]
         return i + 1
 
-作者：xilepeng
-链接：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/solution/python3-by-xilepeng-9/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int: 
+        start = 0
+        while start < len(nums):
+            end = start
+            # 对于任何数组，都要先考虑list range
+            while end < len(nums) and nums[start] == nums[end]:
+                end += 1
+            # end >= len(nums) or nums[start] != nums[end]
+            del nums[start + 1: end]
+            start += 1
+        return len(nums)
