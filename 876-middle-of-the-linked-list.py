@@ -25,3 +25,17 @@ class Solution:
             index += 1
             cur = cur.next
 
+        fast = cur
+        slow = cur
+        1 -> 1 -> 2 -> 3
+             ^         |
+             |---------
+                            f
+        while fast != None:
+            fast = fast.next
+            if fast != None:
+                fast = fast.next
+            else:
+                return slow
+            slow = slow.next
+        return slow
