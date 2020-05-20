@@ -4,23 +4,24 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
+       1
+     2    3
+   4     6  7
+             8
+
+---------
+root = 1
+left_depth = self.getDepth(root.left) 2
+right_depth = self.getDepth(root.right) 3<-
+return 4
+---------
+
 
 class Solution:
-    cnt_left = 1
-    cnt_right = 1
-    depth = []
-    def getDepth(self, root, depth):
-        if root == None:
-            cur_depth = [cnt_left, cnt_right]
-            depth.append(cur_depth)
-            return 
-        getDepth(root.left, depth)
-        ans.append(root.val)
-        getDepth(root.right, depth)
-        cnt_left += 1
-        cnt_right += 1 
-
     def maxDepth(self, root: TreeNode) -> int:
-        getDepth(root, depth)
-        ans = max(depth)
-        return ans
+        if root == None:
+            return 0
+        # what do i need
+        left_depth = self.maxDepth(root.left)
+        right_depth = self.maxDepth(root.right)
+        return max(left_depth, right_depth) + 1

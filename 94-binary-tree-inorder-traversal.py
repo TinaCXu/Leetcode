@@ -53,6 +53,17 @@ C.right = F
      5         15
  4     6    12    18
 class Solution:
+    ans = []
+    def getInorder(root):
+        if root == None:
+            return
+        getInorder(root.left)
+        ans.append(root.val)
+        getInorder(root.right) 
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        getInorder(root)
+        return ans
+
     def getInorder(root, ans):
         if root == None:
             return
@@ -60,17 +71,56 @@ class Solution:
         ans.append(root.val)
         getInorder(root.right, ans) 
 
-----------
-root = 10
-getInorder(root.left, ans) 
-ans.append(root.val)
-getInorder(root.right, ans) <-
-    
-
-
-ans=[4, 5, 6, 10, ]
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         ans = []
         getInorder(root, ans)
         print (ans)
         return ans
+        10
+     5         15
+ 4     6    12    18
+
+ -------------------------
+root = 10
+left_ans = getInorder(root.left) [4,5,6]<-
+right_ans = getInorder(root.right) [12,15,18]
+
+current_ans = []
+for item in left_ans:
+    current_ans.append(item)
+current_ans.append(root.val)
+for item in right_ans:
+    current_ans.append(item)
+return current_ans
+[4,5,6,10,12,15,18]
+
+-----------------------------
+
+    def getInorder(root):#return inorder traversal
+        if root == None:
+            return []
+
+        left_ans = getInorder(root.left)
+        right_ans = getInorder(root.right) 
+        
+        current_ans = []
+        for item in left_ans:
+            current_ans.append(item)
+        current_ans.append(root.val)
+        for item in right_ans:
+            current_ans.append(item)
+        return current_ans
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        return getInorder(root)
+
+class Solution:
+    def _minDepth(self, root):
+        if root == None:
+            return 999999
+        if root.left == None and root.right == None:
+            return 1
+        return min(self._minDepth(root.left),  self._minDepth(root.right)) + 1
+    def minDepth(self, root: TreeNode) -> int:
+        if root == None:
+            return 0
+        return self._minDepth(root)
